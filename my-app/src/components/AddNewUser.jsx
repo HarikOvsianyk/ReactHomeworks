@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import UserButton from './UI/UserButton';
+import UserButton from './UI/Button/UserButton';
+import UserInput from './UI/Input/UserInput';
 
 function AddNewUser({ addNewUser }) {
     const [newUser, setNewUser] = useState({
@@ -20,11 +21,11 @@ function AddNewUser({ addNewUser }) {
     return ( 
         <div>
             <form className="form"> 
-                <input className="form__name" value={newUser.name} onChange={(event) => setNewUser({...newUser, name: event.target.value})} placeholder="Enter name..." />
-                <input className="form__age" value={newUser.age} onChange={(event) => setNewUser({...newUser, age: event.target.value})} placeholder="Enter age..." />
-                <input className="form__gender" value={newUser.gender} onChange={(event) => setNewUser({...newUser, gender: event.target.value})} placeholder="Enter gender..." />
-                <input className="form__balance" value={newUser.balance} onChange={(event) => setNewUser({...newUser, balance: event.target.value})} placeholder="Enter balance..." />
-                <input className="form__picture" value={newUser.picture} onChange={(event) => setNewUser({...newUser, picture: event.target.value})} placeholder="Enter picture..." />
+                <UserInput value={newUser.name} onChange={(event) => setNewUser({...newUser, name: event.target.value})} placeholder="Enter name..." />
+                <UserInput value={newUser.age} onChange={(event) => setNewUser({...newUser, age: event.target.value})} placeholder="Enter age..." />
+                <UserInput value={newUser.gender} onChange={(event) => setNewUser({...newUser, gender: event.target.value})} placeholder="Enter gender..." />
+                <UserInput value={newUser.balance} onChange={(event) => setNewUser({...newUser, balance: event.target.value})} placeholder="Enter balance..." />
+                <UserInput value={newUser.picture} onChange={(event) => setNewUser({...newUser, picture: event.target.value})} placeholder="Enter picture..." />
                 <UserButton onClick={createNewUser}>Create new user</UserButton>
             </form>
         </div>

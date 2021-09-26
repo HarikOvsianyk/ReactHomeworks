@@ -8,22 +8,6 @@
   justify-content: center;
 }
 
-.form__name,
-.form__age,
-.form__gender,
-.form__balance,
-.form__picture {
-  background-color:skyblue;
-  border-radius: 10px;
-  border: 1px solid grey;
-  color:white;
-}
-
-::placeholder {
-  padding-left: 5px;
-  color:white;
-}
-
 
 .user {
   margin: 0 auto;
