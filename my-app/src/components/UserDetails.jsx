@@ -1,20 +1,21 @@
 import React from 'react';
+import '../App.css';
 
 function UserDetails({selectedUser}) {
     return ( 
         <div>
-            <p>Id:{selectedUser._id}</p>
-            <p>Balance:{selectedUser.balance}</p>
+            <p className="userDetail">Name: <span>{selectedUser.name}</span></p>
+            <p className="userDetail">Id:<span>{selectedUser._id}</span></p>
+            <p className="userDetail">Balance:<span>{selectedUser.balance}</span></p>
             <img src={selectedUser.picture} alt="img"></img>
-            <p>Age:{selectedUser.age}</p>
-            <p>Eye color:{selectedUser.eyeColor}</p>
-            <p>Name:{selectedUser.name}</p>
-            <p>Gender:{selectedUser.gender}</p>
-            <p>Company:{selectedUser.company}</p>
-            <p>Email:{selectedUser.email}</p>
-            <p>Phone:{selectedUser.phone}</p>
-            <p>Address:{selectedUser.address}</p>
-            <p>Registered:{selectedUser.registered}</p>
+            <p className="userDetail">Age:<span>{selectedUser.age}</span></p>
+            <p className="userDetail">Eye color:<span>{selectedUser.eyeColor}</span></p>
+            <p className="userDetail">Gender:<span>{selectedUser.gender}</span></p>
+            <p className="userDetail">Company:<span>{selectedUser.company}</span></p>
+            <p className="userDetail">Email:<span>{selectedUser.email}</span></p>
+            <p className="userDetail">Phone:<span>{selectedUser.phone}</span></p>
+            <p className="userDetail">Address:<span>{selectedUser.address}</span></p>
+            <p className="userDetail">Registered:<span>{selectedUser.registered}</span></p>
         </div>
      );
 }

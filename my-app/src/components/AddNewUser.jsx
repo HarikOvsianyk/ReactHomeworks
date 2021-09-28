@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import UserButton from './UI/Button/UserButton';
 import UserInput from './UI/Input/UserInput';
 
+
+
 function AddNewUser({ addNewUser }) {
     const [newUser, setNewUser] = useState({
         name: '',

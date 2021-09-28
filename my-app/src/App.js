@@ -7,6 +7,7 @@ import './App.css';
 import UserSelect from './components/UI/Select/UserSelect';
 import UserModal from './components/UI/Modal/UserModal';
 import UserDetails from './components/UserDetails';
+import UserButton from './components/UI/Button/UserButton';
 
 
 function App() {
@@ -39,6 +40,8 @@ function App() {
     setUser([...users, newUser]);
   }
 
+
+
   return (
     <div className="App">
       <UserModal 
@@ -46,9 +49,12 @@ function App() {
         setVisible={setIsActive}
       >
        <UserDetails selectedUser={selectedUser}/>
+       {/* <AddNewUser addNewUser={addNewUser}/> */}
       </UserModal>
+      <div className="wrapper">
+      <div className="wrapper2">
       <UserSelect
-      defaultValue="Initial state"
+      defaultValue="Sort"
       options={[
         {value: "AZ", title: "Sort by A-Z"},
         {value: "ZA", title: "Sort by Z-A"},
@@ -56,7 +62,10 @@ function App() {
       value={sort}
       onSortChange={setSort}/>
       <FindUser filter={filter} setFilter={setFilter}/>
-      <AddNewUser addNewUser={addNewUser} />
+      </div>
+      <AddNewUser addNewUser={addNewUser}/>
+      </div>
+      
       <UserList users={sortByAge} setIsActive={setIsActive} setSelectedUser={setSelectedUser}/>
     </div>
   );
