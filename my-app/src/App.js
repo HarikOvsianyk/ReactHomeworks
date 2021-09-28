@@ -6,6 +6,7 @@ import {userData} from './userData';
 import './App.css';
 import UserSelect from './components/UI/Select/UserSelect';
 import UserModal from './components/UI/Modal/UserModal';
+import UserDetails from './components/UserDetails';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('');
   const [isActive, setIsActive] = useState(false);
+  const [selectedUser, setSelectedUser] = useState({});
   
   const filterByName = useMemo(() => {
     return users.filter(user => user.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
@@ -43,7 +45,7 @@ function App() {
         visible={isActive}
         setVisible={setIsActive}
       >
-        <h1>Hello</h1>
+       <UserDetails selectedUser={selectedUser}/>
       </UserModal>
       <UserSelect
       defaultValue="Initial state"
@@ -55,7 +57,7 @@ function App() {
       onSortChange={setSort}/>
       <FindUser filter={filter} setFilter={setFilter}/>
       <AddNewUser addNewUser={addNewUser} />
-      <UserList users={sortByAge}/>
+      <UserList users={sortByAge} setIsActive={setIsActive} setSelectedUser={setSelectedUser}/>
     </div>
   );
 }

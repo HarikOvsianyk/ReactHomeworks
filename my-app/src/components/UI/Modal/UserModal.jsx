@@ -8,10 +8,9 @@ function UserModal({children, visible, setVisible}) {
         containerClass.push(classes.active);
     }
 
-
     return ( 
-        <div className={containerClass.join(' ')}>
-            <div className={classes.userModuleContent}>{children}</div>
+        <div className={containerClass.join(' ')} onClick={()=>setVisible(false)}>
+            <div className={classes.userModuleContent} onClick={(event) => event.stopPropagation() }>{children}</div>
         </div>
      );
 }

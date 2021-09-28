@@ -1,8 +1,12 @@
 import React from 'react';
 
-function User({user}) {
+function User({user, setIsActive,setSelectedUser}) {
+    const selectUser = () => {
+        setIsActive(true);
+        setSelectedUser(user);
+    }
     return ( 
-        <div className="user">
+        <div className="user" onClick={selectUser}>
             <p className="user__name">{user.name}</p>
             <p className="user__age">Age: {user.age}</p>
             <p className="user__gender">Gender: {user.gender}</p>
