@@ -1,10 +1,12 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-function Timer({time}) {
+function Timer({times}) {
+
     return (
         <div>
             <ul>
-                {time.map(time=><li key={time.time}>{time.time}</li>)}
+                {times.map(time=><li key={uuidv4()}>{time.hour}:{time.minute}:{time.second}</li>)}
             </ul>
         </div>
     )
