@@ -10,10 +10,10 @@ function App() {
   const [reset, setReset] = useState(false);
   const [times, setTimes] = useState([]);
   const [intervalTime, setIntervalTime] = useState('');
+  const audioFile = new Audio(audio);
   let [seconds, setSeconds] = useState("00");
   let [minutes, setMinutes] = useState("00");
   let [hours, setHours] = useState("00");
-  let audioFile = new Audio(audio);
   
   useEffect(()=> {
     if (localStorage.getItem('times')) {
@@ -26,9 +26,8 @@ function App() {
   }, [times])
 
   const getStart = () => {
-    setStartBTN(false);
-    setStop(false);
-    setReset(false);
+    setStop(true);
+    setReset(true);
     getTime();
     audioFile.play();
   }
@@ -54,34 +53,29 @@ function App() {
   };
 
   const getStop = () => {
+    setStartBTN(false);
     audioFile.play();
-    setStop(true);
-    if (reset === false) {
-        if (hours==="00" && minutes==="00" && seconds ==="00") {
-          return
-        } else {
-          clearInterval(intervalTime);
-          setTimes([...times, {hour:hours,minute:minutes,second:seconds}]);
-          localStorage.setItem('times', JSON.stringify(times));
-        }
-    }
+    setStop(false);
+    clearInterval(intervalTime);
+    setTimes([...times, {hour:hours,minute:minutes,second:seconds}]);
+    localStorage.setItem('times', JSON.stringify(times));
   };
 
   const getReset = () => {
-    audioFile.play();
-    if (stop === true) {
+    
+    setHours('00');
+    setMinutes('00');
+    setSeconds('00');
+    if (stop) {
+        getStop();
+        audioFile.play();
         setReset(false);
         setStartBTN(true);
-        setHours('00');
-        setMinutes('00');
-        setSeconds('00');
+        setStop(false);
+
     } else {
-        setStartBTN(true);
         setReset(true);
-        getStop();
-        setHours('00');
-        setMinutes('00');
-        setSeconds('00');
+        setStartBTN(true);
     }
   }
 
@@ -91,12 +85,12 @@ function App() {
        {
         startBTN
         ?
-        <Button onClick={getStart} style={{backgroundColor:"green"}}>Start</Button>
+        <Button onClick={getStart} disabled={stop} style={{backgroundColor:"green"}}>Start</Button>
         :
-        <Button onClick={getStart} style={{backgroundColor:"purple"}}>Countinue</Button>
+        <Button onClick={getStart} disabled={stop} style={{backgroundColor:"purple"}}>Countinue</Button>
        }
-        <Button onClick={getStop} style={{backgroundColor: "red"}}>Stop</Button>
-        <Button onClick={getReset} style={{backgroundColor: "orange"}}>Reset</Button>
+        <Button onClick={getStop} disabled={!stop} style={{backgroundColor: "red"}}>Stop</Button>
+        <Button onClick={getReset} disabled={!reset} style={{backgroundColor: "orange"}}>Reset</Button>
         <Timer times={times}/>
     </div>
   );
