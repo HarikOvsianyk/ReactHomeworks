@@ -21,6 +21,12 @@ function App() {
     }
   }, []);
 
+  useEffect(()=> {
+    if (!stop) {
+      clearInterval(intervalTime);
+    }
+  });
+
   useEffect(() => {
     localStorage.setItem('times', JSON.stringify(times))
   }, [times])
@@ -33,7 +39,7 @@ function App() {
   }
 
   const getTime = () => {
-    const time = setInterval(() => {
+    const timer = setInterval(() => {
       seconds++;
       setSeconds(seconds.toString().padStart(2,0));
       if (seconds === 59) {
@@ -48,7 +54,7 @@ function App() {
         setHours(hours.toString().padStart(2,0));
       }
       
-      setIntervalTime(time);
+      setIntervalTime(timer);
     }, 1000);
   };
 
@@ -56,13 +62,11 @@ function App() {
     setStartBTN(false);
     audioFile.play();
     setStop(false);
-    clearInterval(intervalTime);
     setTimes([...times, {hour:hours,minute:minutes,second:seconds}]);
     localStorage.setItem('times', JSON.stringify(times));
   };
 
   const getReset = () => {
-    
     setHours('00');
     setMinutes('00');
     setSeconds('00');
