@@ -25,7 +25,7 @@ const schema = yup.object().shape({
 export const Step2 = () => {
     const { nextStep, prevStep, setValues, state } = useRegContext();
     const {register, handleSubmit, formState: {errors}} = useForm({
-        defaultValues: {city: state.city, street: state.street, build: state.build},
+        defaultValues: {city: state.data.city, street: state.data.street, build: state.data.build},
         mode: "onBlur",
         resolver: yupResolver(schema),
     });

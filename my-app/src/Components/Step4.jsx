@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 export const Step4 = () => {
     const { prevStep, nextStep, setValues, state } = useRegContext();
     const {register, handleSubmit, formState: {errors}} = useForm({
-        defaultValues: {password: state.password, password2: state.password},
+        defaultValues: {password: state.data.password, password2: state.data.password},
         mode: "onBlur",
         resolver: yupResolver(schema),
     });

@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        margin:theme.spacing(3,13,2),
+        margin:theme.spacing(3,12,2),
     }
 }))
 

@@ -8,21 +8,15 @@ import {PreviousButton} from './Button/PreviousButton';
 import {useRegContext} from '../Actions/Actions';
 
 export const Step3 = () => {
-  const { prevStep, nextStep, picture } = useRegContext();
-    const { register, handleSubmit } = useForm();
+  const { prevStep, nextStep, picture, state } = useRegContext();
+    const { register, handleSubmit } = useForm({
+      defaultValues: {file: state.data.file}
+    });
   
     const onSubmit = (data) => {
     picture(data);
 		nextStep();
     };
-
-/*     const handleFileChange = (event) => {
-      let reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload = () => {
-        console.log(reader.result);
-      }   
-    }; */
   
     return (
       <MainContainer>
@@ -34,7 +28,6 @@ export const Step3 = () => {
 					{...register('file')}
 					type="file"
 					name="file"
-          /* onChange = {handleFileChange} */
 				/>
           <PreviousButton onClick={prevStep}>Previous</PreviousButton>
           <PrimaryButton>Next</PrimaryButton>
