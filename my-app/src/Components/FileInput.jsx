@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         control={control}
         name={name}
         defaultValue={[]}
-        render={({ onChange, onBlur, value }) => (
+        render={({ field: { onChange, onBlur, value }}) => (
           <>
             <Dropzone onDrop={onChange}>
               {({ getRootProps, getInputProps }) => (

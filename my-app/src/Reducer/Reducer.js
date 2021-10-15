@@ -30,7 +30,7 @@ export const reducer = (state, action) => {
             if (action.payload.file.length === 0) {
 				return {
 					...state,
-					img: state.img,
+					file: state.file,
 				};
 			}
 			let reader = new FileReader();
