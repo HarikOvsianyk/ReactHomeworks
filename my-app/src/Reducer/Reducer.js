@@ -32,7 +32,7 @@ export const reducer = (state=initialState, action) => {
                 }
             };
         case PICTURE:
-            if (action.payload.file.length === 0) {
+            if (!action.payload.file.length) {
 				return {
 					...state,
 					file: state.file,

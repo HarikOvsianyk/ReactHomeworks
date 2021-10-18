@@ -15,7 +15,7 @@ export const Step3 = () => {
     const { control, handleSubmit } = useForm({
       defaultValues: {file: state.data.file}
     });
-    
+
     const onSubmit = (data) => {
     dispatch(picture(data));
 		dispatch(nextStep());
@@ -28,7 +28,7 @@ export const Step3 = () => {
         </Typography>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <FileInput name="file" control={control}/>
-          <PreviousButton onClick={prevStep}>Previous</PreviousButton>
+          <PreviousButton onClick={()=> dispatch(prevStep())}>Previous</PreviousButton>
           <PrimaryButton>Next</PrimaryButton>
         </Form>
       </MainContainer>

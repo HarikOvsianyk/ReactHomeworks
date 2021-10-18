@@ -64,7 +64,7 @@ export const Step2 = () => {
             name="build"
             error={!!errors.build}
             helperText={errors?.build?.message}/>
-            <PreviousButton onClick={prevStep}>Previous</PreviousButton>
+            <PreviousButton onClick={()=> dispatch(prevStep())}>Previous</PreviousButton>
             <PrimaryButton>Next</PrimaryButton>
         </Form>
     </MainContainer>

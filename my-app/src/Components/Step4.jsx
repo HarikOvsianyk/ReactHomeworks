@@ -25,7 +25,7 @@ export const Step4 = () => {
         resolver: yupResolver(schema),
     });
     const onSubmit = (data) => {
-        if (state.password !== state.password2) {
+        if (data.password !==data.password2) {
             return alert("Passwords must be identical")
         } else {
             dispatch(setValues(data));
@@ -53,7 +53,7 @@ export const Step4 = () => {
                 name="password2"
                 error={!!errors.password2}
                 helperText={errors?.password2?.message}/>
-                <PreviousButton onClick={prevStep}>Previous</PreviousButton>
+                <PreviousButton onClick={()=> dispatch(prevStep())}>Previous</PreviousButton>
                 <PrimaryButton>Submit</PrimaryButton>
             </Form>
         </MainContainer>
