@@ -6,19 +6,19 @@ import { useForm } from "react-hook-form";
 import {Form} from './Form/Form';
 import {PrimaryButton} from './Button/PrimaryButton';
 import {PreviousButton} from './Button/PreviousButton';
-import {useRegContext} from '../Actions/Actions';
+import {useData} from '../Context/DataContext';
 import { FileInput } from './FileInput';
+import { picture, nextStep, prevStep } from '../Actions/Actions';
 
 export const Step3 = () => {
-  const { prevStep, nextStep, picture, state } = useRegContext();
+  const [state, dispatch] = useData();
     const { control, handleSubmit } = useForm({
-      defaultValues: {file: state.file}
+      defaultValues: {file: state.data.file}
     });
-  
+    
     const onSubmit = (data) => {
-    picture(data);
-    console.log(data);
-		nextStep();
+    dispatch(picture(data));
+		dispatch(nextStep());
     };
   
     return (

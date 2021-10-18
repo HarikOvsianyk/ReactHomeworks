@@ -8,7 +8,8 @@ import {PrimaryButton} from './Button/PrimaryButton';
 import {PreviousButton} from './Button/PreviousButton';
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useRegContext} from '../Actions/Actions';
+import {useData} from '../Context/DataContext';
+import { setValues, nextStep, prevStep } from '../Actions/Actions';
 
 const schema = yup.object().shape({
     password: yup.string().min(3).required('Password is required'),
@@ -17,7 +18,7 @@ const schema = yup.object().shape({
 })
 
 export const Step4 = () => {
-    const { prevStep, nextStep, setValues, state } = useRegContext();
+    const [state, dispatch] = useData();
     const {register, handleSubmit, formState: {errors}} = useForm({
         defaultValues: {password: state.data.password, password2: state.data.password},
         mode: "onBlur",
@@ -27,8 +28,8 @@ export const Step4 = () => {
         if (state.password !== state.password2) {
             return alert("Passwords must be identical")
         } else {
-            setValues(data);
-            nextStep();
+            dispatch(setValues(data));
+            dispatch(nextStep());
         }   
     }
 

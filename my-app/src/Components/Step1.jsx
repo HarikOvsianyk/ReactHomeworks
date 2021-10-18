@@ -7,7 +7,8 @@ import {Input} from './Input/Input';
 import {PrimaryButton} from './Button/PrimaryButton';
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useRegContext} from '../Actions/Actions';
+import {useData} from '../Context/DataContext';
+import { setValues, nextStep } from '../Actions/Actions'; 
 
 const schema = yup.object().shape({
     firstName: yup
@@ -25,15 +26,15 @@ const schema = yup.object().shape({
 })
 
 export const Step1 = () => {
-    const {nextStep, setValues, state} = useRegContext();
+    const [state, dispatch] = useData();
     const {register, handleSubmit, formState: {errors}} = useForm({
         defaultValues: {fistName:state.data.firstName, lastName:state.data.lastName, email: state.data.email },
         mode: "onBlur",
         resolver: yupResolver(schema),
     });
     const onSubmit = (data) => {
-		setValues(data);
-		nextStep();
+		dispatch(setValues(data));
+		dispatch(nextStep());
     }
     return (
         <MainContainer>

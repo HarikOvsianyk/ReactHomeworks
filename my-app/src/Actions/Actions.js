@@ -1,61 +1,27 @@
-import React, { useContext, useReducer } from 'react';
-import {RegContext} from '../Context/DataContext';
-import {reducer} from '../Reducer/Reducer';
-
 export const DATA = 'data';
 export const NEXT_STEP = 'next step';
 export const PREVIOUS_STEP = 'previous step';
 export const PICTURE = 'picture';
 
-export const Actions = ({children}) => {
-    const initialState = {
-		data: {},
-		step: 1,
-		img: '',
-	};
+export const setValues = (values) => (
+	{
+		type: DATA,
+		payload: values,
+	}
+);
 
-    const [state, dispatch] = useReducer(reducer, initialState);
+export const picture = (pic) => ({
+	type: PICTURE,
+	payload: pic,
+});
 
-    const setValues = (values) => {
-		dispatch({
-			type: DATA,
-			payload: values,
-		});
-	};
+export const nextStep = () => ({
+	type: NEXT_STEP,
+	payload: 1,
+});
 
-	const picture = (pic) => {
-		dispatch({
-			type: PICTURE,
-			payload: pic,
-		});
-	};
+export const prevStep = () => ({
+	type: PREVIOUS_STEP,
+	payload: 1,
+});
 
-	const nextStep = () => {
-		dispatch({
-			type: NEXT_STEP,
-			payload: 1,
-		});
-	};
-	const prevStep = () => {
-		dispatch({
-			type: PREVIOUS_STEP,
-			payload: 1,
-		});
-	};
-
-    const value = {
-		setValues,
-		nextStep,
-		prevStep,
-		picture,
-		state,
-	};
-
-    return (
-		<RegContext.Provider value={value}>
-			{children}
-		</RegContext.Provider>
-	);
-} 
-
-export const useRegContext = () => useContext(RegContext);

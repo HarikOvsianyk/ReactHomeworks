@@ -8,7 +8,8 @@ import {PrimaryButton} from './Button/PrimaryButton';
 import {PreviousButton} from './Button/PreviousButton';
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useRegContext} from '../Actions/Actions';
+import {useData} from '../Context/DataContext';
+import { setValues, nextStep, prevStep } from '../Actions/Actions'; 
 
 const schema = yup.object().shape({
     city: yup
@@ -23,7 +24,7 @@ const schema = yup.object().shape({
 })
 
 export const Step2 = () => {
-    const { nextStep, prevStep, setValues, state } = useRegContext();
+    const [state, dispatch] = useData();
     const {register, handleSubmit, formState: {errors}} = useForm({
         defaultValues: {city: state.data.city, street: state.data.street, build: state.data.build},
         mode: "onBlur",
@@ -31,8 +32,8 @@ export const Step2 = () => {
     });
 
     const onSubmit = (data) => {
-		setValues(data);
-		nextStep();
+		dispatch(setValues(data));
+		dispatch(nextStep());
     }
 
     return (

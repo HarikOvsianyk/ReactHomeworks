@@ -5,8 +5,13 @@ PREVIOUS_STEP,
 PICTURE,
 } from '../Actions/Actions';
 
+export const initialState = {
+    data: {},
+    step: 1,
+    file: '',
+};
 
-export const reducer = (state, action) => {
+export const reducer = (state=initialState, action) => {
     switch(action.type) {
         case NEXT_STEP:
             return {
@@ -35,7 +40,7 @@ export const reducer = (state, action) => {
 			}
 			let reader = new FileReader();
 			reader.readAsDataURL(action.payload.file[0]);
-			return { ...state, img: reader };
+			return { ...state, file: reader };
             default:
                 return state;
     }

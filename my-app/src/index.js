@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {Actions} from './Actions/Actions';
+import { DataProvider } from './Context/DataContext';
+import {reducer, initialState} from './Reducer/Reducer';
 
 ReactDOM.render(
-   <Actions>
+   <DataProvider reducer={reducer} initialState={initialState}>
       <App />
-   </Actions>,
+   </DataProvider>   ,
   document.getElementById('root')
 );
 

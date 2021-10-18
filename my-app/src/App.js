@@ -4,10 +4,10 @@ import {Step2} from './Components/Step2';
 import {Step3} from './Components/Step3';
 import {Step4} from './Components/Step4';
 import {Result} from './Components/Result';
-import {useRegContext} from './Actions/Actions';
+import {useData} from './Context/DataContext';
 
 function App() {
-  const { state } = useRegContext();
+  const  [state]  = useData();
   const Form = () => {
     switch (state.step) {
       case 1:
@@ -23,12 +23,12 @@ function App() {
       default:
         return <Step1 />;
     }
-  }
+  };
   return (
-    <>
+    <div>
       <Form />
-    </>
+    </div>
   );
-}
+};
 
 export default App;
