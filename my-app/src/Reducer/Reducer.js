@@ -8,7 +8,7 @@ PICTURE,
 export const initialState = {
     data: {},
     step: 1,
-    file: '',
+    file: [],
 };
 
 export const reducer = (state=initialState, action) => {
@@ -31,16 +31,11 @@ export const reducer = (state=initialState, action) => {
                     ...action.payload
                 }
             };
-        case PICTURE:
-            if (!action.payload.file.length) {
-				return {
-					...state,
-					file: state.file,
-				};
-			}
-			let reader = new FileReader();
-			reader.readAsDataURL(action.payload.file[0]);
-			return { ...state, file: reader };
+        case PICTURE:	
+			return {
+                ...state,
+                file: action.payload,
+                 };
             default:
                 return state;
     }

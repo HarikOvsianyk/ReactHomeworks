@@ -16,8 +16,14 @@ export const Step3 = () => {
       defaultValues: {file: state.data.file}
     });
 
+    function upload(data) {
+      let reader = new FileReader();
+			reader.readAsDataURL(data.file[0]);
+      return reader;
+    }
+
     const onSubmit = (data) => {
-    dispatch(picture(data));
+    dispatch(picture(upload(data)));
 		dispatch(nextStep());
     };
   

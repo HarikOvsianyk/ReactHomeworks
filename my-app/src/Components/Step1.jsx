@@ -6,7 +6,7 @@ import {Form} from './Form/Form';
 import {Input} from './Input/Input';
 import {PrimaryButton} from './Button/PrimaryButton';
 import * as yup from "yup";
-import {yupResolver} from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {useData} from '../Context/DataContext';
 import { setValues, nextStep } from '../Actions/Actions'; 
 

@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 
 export const Result = () => {
     const [state] = useData();
+	console.log(state);
     return (
         <MainContainer>
         <Typography component="h2" variant="h5">
