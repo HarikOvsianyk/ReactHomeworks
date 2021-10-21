@@ -1,8 +1,11 @@
 import { gameParams } from '../constants/gameParams';
-import { ADD_TO_HISTORY } from '../actions';
+import { ADD_TO_HISTORY,  UPDATE_HISTORY, DEFINE_WINNER, NEW_GAME, TURN_SIGN } from '../actions';
 
 export const initialState = {
     isXTurn: true,
+    disabled: false,
+    winner: null,
+    winnerHistory: [],
     history: [
         {
             squares: new Array(Math.pow(gameParams.size, 2)).fill(null),
@@ -15,8 +18,46 @@ export const gameReducer = (state=initialState, action) => {
         case ADD_TO_HISTORY:
             return {
                 ...state,
+                disabled: true,
                 history: [...state.history, action.payload],
+                isXTurn: !state.isXTurn,
             };
+        case UPDATE_HISTORY:
+            return {
+                ...state,
+                winner: null,
+                isXTurn: !state.isXTurn,
+                history: state.history.filter((el, index) => index <= action.payload.index)
+                };
+        case DEFINE_WINNER:
+            return {
+                ...state,
+                winner: action.payload,
+                winnerHistory: [...state.winnerHistory, action.payload]
+                };
+        case NEW_GAME:
+            return {
+                ...state,
+                winner: null,
+                winnerHistory: [],
+                history: [
+                    {
+                        squares: new Array(Math.pow(gameParams.size, 2)).fill(null),
+                    }
+                ],
+            };
+            case TURN_SIGN:
+            if (action.payload === true) {
+                return {
+                    ...state,
+                    isXTurn: true,
+                }
+            } else {
+                return {
+                    ...state,
+                    isXTurn: !state.isXTurn,
+                }
+            }
         default:
             return state;
     }

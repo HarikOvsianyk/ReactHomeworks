@@ -1,4 +1,5 @@
 .game {
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -7,6 +8,7 @@
     color: #ffffff;
   }
 .disabled {
+    pointer-events: none;
     .btn {
         cursor: default;
         &:hover {
@@ -16,4 +18,79 @@
             box-shadow: 0 12px #c2bb11, 0 18px rgba(0, 0, 0, 0.4);
           }
     }
+}
+
+.start {
+    background-color: #ffffff;
+    color: #e5dc15;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin: 15px;
+    padding: 5px;
+    border: 2px solid #e5dc15;
+    border-radius: 5px;
+    box-shadow: 0 12px #c2bb11, 0 18px rgba(0, 0, 0, 0.4);
+    font-size: 30px;
+    width: 70%;
+    height: 60px;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+}
+
+.choose-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.choose {
+    background-color: #ffffff;
+    color: #e5dc15;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin: 15px;
+    padding: 5px;
+    border: 2px solid #e5dc15;
+    border-radius: 5px;
+    box-shadow: 0 12px #c2bb11, 0 18px rgba(0, 0, 0, 0.4);
+    font-size: 30px;
+    width: 30%;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+}
+
+.winner {
+    background-color: #ffffff;
+    color: #e5dc15;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid #e5dc15;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+}
+
+.step-next {
+    background-color: #ffffff;
+    color: #e5dc15;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 2px solid #e5dc15;
+    border-radius: 5px;
+    box-shadow: 0 12px #c2bb11, 0 18px rgba(0, 0, 0, 0.4);
+    font-size: 10px;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    top: 0;
 }
