@@ -14,10 +14,10 @@ export const updateHistory = (index) => ({
     payload: {index},
 });
 
-export const defineWinner = (player) => {
+export const defineWinner = (player, date) => {
     return {
       type: DEFINE_WINNER,
-      payload: player,
+      payload: [player, date],
     };
 };
 

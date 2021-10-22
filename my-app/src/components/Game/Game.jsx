@@ -15,18 +15,25 @@ export default function Game() {
         squares[i] = isXTurn ? "X" : "O";
         const finalWinner = calculateWinner(squares);
         if (finalWinner) {
-            dispatch(defineWinner(finalWinner));
+            dispatch(defineWinner(finalWinner, date));
           }
         dispatch(addToHistory(squares));
     };
 
     useEffect(()=> {
-        localStorage.setItem('winners', JSON.stringify([]))
-    }, []);
+        if (localStorage.getItem('winners')) {
+            console.log(localStorage.getItem('winners'));
+        } else {
+            localStorage.setItem('winners', JSON.stringify(winnerHistory));
+        }
+    }, [winnerHistory]);
 
     if (winner) {
-        localStorage.setItem('winners', JSON.stringify([...winner, date]));
+        localStorage.setItem('winners', JSON.stringify([...winnerHistory]));
     }
+
+    let rank = JSON.parse(localStorage.getItem('winners'));
+    
 
     return (
         <div>
@@ -38,11 +45,20 @@ export default function Game() {
                 </div>
             </div>
             <div className={winner ? "game disabled" : "game"}>
+            {
+                winner
+                ?
+                <div>
+                <p style={{color:'white', fontSize:'20px'}}>Winners ranking</p>
+                {rank.map((winner,i)=> <p key={i} className="step-next">Winner is {winner[0]} at {winner[1]}</p>)}
+                </div>
+                : ''
+            }
             <Board squares={currentStep.squares} onClick={handleClick}/>
             <div>
                 {
                     winner
-                    ? <p className="winner">Winner is {winner}</p>
+                    ? <p className="winner">Winner is {winner[0]}</p>
                     : <p className="step-next">Next step is {isXTurn ? "X" : "O"}</p>
                 } 
                 <p style={{color:'white', fontSize:'20px'}}>Step History</p>

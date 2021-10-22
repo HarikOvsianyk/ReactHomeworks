@@ -27,7 +27,7 @@ export const gameReducer = (state=initialState, action) => {
                 ...state,
                 winner: null,
                 isXTurn: !state.isXTurn,
-                history: state.history.filter((el, index) => index <= action.payload.index)
+                history: [...state.history.slice(0, action.payload.index + 1)]
                 };
         case DEFINE_WINNER:
             return {
@@ -39,7 +39,7 @@ export const gameReducer = (state=initialState, action) => {
             return {
                 ...state,
                 winner: null,
-                winnerHistory: [],
+                winnerHistory: [...state.winnerHistory],
                 history: [
                     {
                         squares: new Array(Math.pow(gameParams.size, 2)).fill(null),
