@@ -3,7 +3,7 @@ import './Game.scss';
 import Board from '../Board/Board';
 import { useGameStore } from '../../context';
 import { calculateWinner} from '../../utils';
-import { addToHistory, defineWinner, newGame, turnSign } from '../../actions';
+import { addToHistory, defineWinner, newGame, turnSign, local } from '../../actions';
 import { Step } from './Step/Step';
 
 export default function Game() {
@@ -22,19 +22,18 @@ export default function Game() {
 
     useEffect(()=> {
         if (localStorage.getItem('winners')) {
-            console.log(localStorage.getItem('winners'));
-        } else {
-            localStorage.setItem('winners', JSON.stringify(winnerHistory));
-        }
-    }, [winnerHistory]);
+            let list = JSON.parse(localStorage.getItem('winners'));
+            dispatch(local(list));
+        } 
+    }, [dispatch]);
 
     if (winner) {
         localStorage.setItem('winners', JSON.stringify([...winnerHistory]));
-    }
+    } 
 
     let rank = JSON.parse(localStorage.getItem('winners'));
     
-
+    console.log(winnerHistory);
     return (
         <div>
             <div>

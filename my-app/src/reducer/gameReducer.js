@@ -1,5 +1,5 @@
 import { gameParams } from '../constants/gameParams';
-import { ADD_TO_HISTORY,  UPDATE_HISTORY, DEFINE_WINNER, NEW_GAME, TURN_SIGN } from '../actions';
+import { ADD_TO_HISTORY,  UPDATE_HISTORY, DEFINE_WINNER, NEW_GAME, TURN_SIGN,LOCAL_STORAGE } from '../actions';
 
 export const initialState = {
     isXTurn: true,
@@ -58,6 +58,11 @@ export const gameReducer = (state=initialState, action) => {
                     isXTurn: !state.isXTurn,
                 }
             }
+            case LOCAL_STORAGE:
+                return {
+                    ...state,
+                    winnerHistory: [...action.payload]
+                    };
         default:
             return state;
     }
