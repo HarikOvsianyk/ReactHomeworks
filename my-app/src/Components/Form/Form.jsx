@@ -1,8 +1,8 @@
 import React from 'react';
 import { MainContainer } from '../MainContainer/MainContainer';
 import Typography from '@mui/material/Typography';
-import { Input } from '../Input/Input';
-import PrimaryButton from '../Button/PrimaryButton';
+import { Input } from '../UI/Input/Input';
+import PrimaryButton from '../UI/Button/PrimaryButton';
 import yup from 'yup';
 
 export const Form = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { MainContainer } from './Components/MainContainer/MainContainer';
-import { Input } from './Components/Input/Input';
+import { Input } from './Components/UI/Input/Input';
 import {UserCard} from './Components/Card/UserCard';
 import {Form} from './Components/Form/Form';
 
