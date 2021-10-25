@@ -1,19 +1,15 @@
 import React from 'react';
 import './App.css';
 import { MainContainer } from './Components/MainContainer/MainContainer';
-import { Input } from './Components/UI/Input/Input';
 import {Form} from './Components/Form/Form';
 import {UserList} from './Components/UserList/UserList';
+import {Search} from './Components/SearchBar/Search';
 
 function App() {
   return (
     <MainContainer sx={{display: "flex"}}>
       <MainContainer sx={{width: "100%"}}>
-      <Input
-        id="searchInput"
-        type="text"
-        label="Enter participant name..."
-      />
+      <Search />
       <UserList />
       </MainContainer>
       <MainContainer>

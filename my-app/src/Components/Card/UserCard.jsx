@@ -19,11 +19,14 @@ export const UserCard = ({user}) => {
           Name : {user.name}
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Name : {user.second}
+        </Typography>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Time : {user.time}
         </Typography>
       </CardContent>
       <CardActions sx={{justifyContent:"center"}}>
-        <PrimaryButton>Learn More</PrimaryButton>
+        <PrimaryButton>Delete</PrimaryButton>
       </CardActions>
     </Card>
   );

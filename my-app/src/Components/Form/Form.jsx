@@ -12,11 +12,11 @@ import { createUser } from '../../Actions';
 export const Form = () => {
     const dispatch = useDispatch();
     const schema = yup.object().shape({
-        firstName: yup
+        name: yup
         .string()
         .matches(/^([^0-9]*)$/, "First name should not contain numbers")
         .required("First name is required field"),
-        secondName: yup
+        second: yup
         .string()
         .matches(/^([^0-9]*)$/, "Second name should not contain numbers")
         .required("Second name is required field"),
@@ -36,22 +36,22 @@ export const Form = () => {
             <Typography component="h2" variant="h5">Registration user</Typography>
             <form noValidate>
             <Input
-                {...register('firstName')}
-                id="firstName"
+                {...register('name')}
+                id="name"
                 type="text"
                 label="First name"
                 placeholder = "Enter fisrt name.."
-                error={!!errors.firstName}
-                helperText={errors?.firstName?.message}
+                error={!!errors.name}
+                helperText={errors?.name?.message}
             />
             <Input
-                {...register('secondName')}
-                id="secondName"
+                {...register('second')}
+                id="second"
                 type="text"
                 label="Second name"
                 placeholder = "Enter second name.."
-                error={!!errors.secondName}
-                helperText={errors?.secondName?.message}
+                error={!!errors.second}
+                helperText={errors?.second?.message}
             />
             </form>
             <PrimaryButton onClick={handleSubmit(onSubmit)}>Register participant</PrimaryButton>

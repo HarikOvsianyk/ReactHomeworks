@@ -1,20 +1,16 @@
-import {GET_USERS,CREATE_USER,DELETE_USER} from '../../Actions';
+import {CREATE_USER, DELETE_USER} from '../../Actions';
+import {users} from '../../Data/users';
 export const initialState = {
-    users: [],
+    users: users,
 };
 
 export function userReducer  (state = initialState, action) {
     switch (action.type) {
-        case GET_USERS:
-            return {
-                ...state,
-                users: [...action.payload],
-            };
         case CREATE_USER:
             return {
                 ...state,
                 users:[...state.users,action.payload],
-            }
+            };
         case DELETE_USER:
             console.log("DELETE");
             return state;
