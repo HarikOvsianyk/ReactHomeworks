@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import PrimaryButton from '../UI/Button/PrimaryButton';
 import Typography from '@mui/material/Typography';
 
-export const UserCard = () => {
+export const UserCard = ({user}) => {
   return (
     <Card sx={{ width: 180,
                 m:2,
@@ -13,7 +13,13 @@ export const UserCard = () => {
                 alignItems: 'center'}}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
+          ID : {user.id}
+        </Typography>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Name : {user.name}
+        </Typography>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Time : {user.time}
         </Typography>
       </CardContent>
       <CardActions sx={{justifyContent:"center"}}>
@@ -21,4 +27,6 @@ export const UserCard = () => {
       </CardActions>
     </Card>
   );
-}
+};
+
+export default UserCard;

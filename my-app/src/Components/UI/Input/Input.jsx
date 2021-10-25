@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import TextField from '@mui/material/TextField';
 
-export const Input = ({props, ref}) => {
+export const Input = forwardRef((props, ref) => {
     return (
-        <TextField 
-        inputRef={ref} 
+      <TextField
         variant="outlined"
         margin="normal"
+        inputRef={ref}
         fullWidth
-        {...props} />
+        {...props}
+      />
     );
-}; 
+  });

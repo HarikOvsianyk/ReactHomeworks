@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { MainContainer } from './Components/MainContainer/MainContainer';
 import { Input } from './Components/UI/Input/Input';
-import {UserCard} from './Components/Card/UserCard';
 import {Form} from './Components/Form/Form';
+import {UserList} from './Components/UserList/UserList';
 
 function App() {
   return (
@@ -14,17 +14,7 @@ function App() {
         type="text"
         label="Enter participant name..."
       />
-      <MainContainer sx={{display: "flex",
-                          flexDirection: 'row',
-                          flexWrap: 'wrap'}}>
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-      </MainContainer>
+      <UserList />
       </MainContainer>
       <MainContainer>
         <Form/>
@@ -34,3 +24,12 @@ function App() {
 }
 
 export default App;
+/* const mapStateToProps = (state) => {
+  console.log('App', state);
+  return state;
+};
+
+const mapDispatchToProps = {
+  deleteUser,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App); */
