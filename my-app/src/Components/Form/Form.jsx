@@ -9,9 +9,10 @@ import * as yup from "yup";
 import {useDispatch} from 'react-redux';
 import { createUser } from '../../Actions';
 import {Timer} from '../Timer/Timer';
+import {showModal} from '../../Actions';
 
 export const Form = () => {
-    const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState();
     const dispatch = useDispatch();
     const schema = yup.object().shape({
         name: yup
@@ -33,6 +34,7 @@ export const Form = () => {
         dispatch(createUser(data));
         reset();
         setModal(true);
+        dispatch(showModal(true));
     }
 
     return (

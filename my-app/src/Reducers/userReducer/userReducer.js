@@ -1,9 +1,10 @@
-import {CREATE_USER, DELETE_USER, SEARCH_USER} from '../../Actions';
+import {CREATE_USER, DELETE_USER, SEARCH_USER, SHOW_MODAL} from '../../Actions';
 import {users} from '../../Data/users';
 import {id} from '../../utils';
 export const initialState = {
     users: users,
     filteredUsers: users,
+    showModal: true,
 };
 
 export function userReducer  (state = initialState, action) {
@@ -34,6 +35,11 @@ export function userReducer  (state = initialState, action) {
                     filteredUsers: state.users
                 }
             };
+        case SHOW_MODAL: 
+        return {
+            ...state,
+            showModal: action.payload
+        }
         default:
             return state;
     }

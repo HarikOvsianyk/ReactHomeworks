@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import PrimaryButton from '../UI/Button/PrimaryButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {showModal} from '../../Actions';
 
 const style = {
   position: 'absolute',
@@ -19,8 +21,9 @@ const style = {
 };
 
 export function Timer() {
-  const [open, setOpen] = React.useState(true);
-  const handleClose = () => setOpen(false);
+  const dispatch = useDispatch();
+  const showModalState = useSelector(state=> state.users.showModal);
+  const open = showModalState;
   const [startBTN, setStartBTN] = useState(true);
   const [stop, setStop] = useState(false);
   const [reset, setReset] = useState(false);
@@ -83,6 +86,10 @@ export function Timer() {
         setReset(true);
         setStartBTN(true);
     }
+  };
+
+  const closeModal = () => {
+    dispatch(showModal(false));
   }
 
 
@@ -90,7 +97,6 @@ export function Timer() {
     <div>
       <Modal
         open={open}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -113,8 +119,8 @@ export function Timer() {
             <Button onClick={getStop} disabled={!stop}  style={{backgroundColor: "red",color:"white",marginRight:"5px"}}>Stop</Button>
             <Button onClick={getReset} disabled={!reset}  style={{backgroundColor: "orange",color:"white"}}>Reset</Button>
         </div>
-        <div style ={{marginTop: "30px", display:'flex', justifyContent: "space-between"}}>
-            <PrimaryButton>Cancel</PrimaryButton>
+        <div style ={{marginTop: "20px", display:'flex', justifyContent: "space-between"}}>
+            <PrimaryButton onClick = {closeModal}>Cancel</PrimaryButton>
             <PrimaryButton>Save</PrimaryButton>
         </div>
         </Box>
