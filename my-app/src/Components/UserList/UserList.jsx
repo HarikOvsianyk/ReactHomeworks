@@ -4,7 +4,7 @@ import { MainContainer } from '../MainContainer/MainContainer';
 import UserCard from '../Card/UserCard';
 
 export const UserList = () => {
-    const users = useSelector((state) => state.users.users);
+    const users = useSelector((state) => state.users.filteredUsers);
     return (
         <MainContainer sx={{display: "flex",
         flexDirection: 'row',
