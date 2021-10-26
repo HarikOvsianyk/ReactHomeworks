@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
-import { MainContainer } from './Components/MainContainer/MainContainer';
+import { MainContainer } from './Components/UI/MainContainer/MainContainer';
 import {Form} from './Components/Form/Form';
 import {UserList} from './Components/UserList/UserList';
 import {Search} from './Components/SearchBar/Search';
+import {Winner} from './Components/Winnerinfo/Winner';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       </MainContainer>
       <MainContainer sx ={{mt:3}}>
         <Form/>
+        <Winner/>
       </MainContainer>
     </MainContainer>
   );

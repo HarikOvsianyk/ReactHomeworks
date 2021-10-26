@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { MainContainer } from '../MainContainer/MainContainer';
+import { MainContainer } from '../UI/MainContainer/MainContainer';
 import Typography from '@mui/material/Typography';
 import { Input } from '../UI/Input/Input';
 import PrimaryButton from '../UI/Button/PrimaryButton';
