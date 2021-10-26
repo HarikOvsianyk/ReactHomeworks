@@ -1,9 +1,15 @@
-import {CREATE_USER, DELETE_USER, SEARCH_USER, SHOW_MODAL} from '../../Actions';
+import {CREATE_USER,UPDATE_USERS_ARR, DELETE_USER, SEARCH_USER, SHOW_MODAL, GET_TIMER} from '../../Actions';
 import {users} from '../../Data/users';
 import {id} from '../../utils';
 export const initialState = {
     users: users,
     filteredUsers: users,
+    user: {
+        id: '',
+        name: '',
+        second:'',
+        time: '',
+    },
     showModal: true,
 };
 
@@ -12,9 +18,32 @@ export function userReducer  (state = initialState, action) {
         case CREATE_USER:
             return {
                 ...state,
-                users:[...state.users,{id:id(),...action.payload }],
-                filteredUsers:[...state.filteredUsers,{id:id(),...action.payload }]
+                user:{
+                    ...state.user,
+                    id:id(),
+                    name: action.payload.name,
+                    second: action.payload.second,
+                    time: '',
+                },
             };
+        case GET_TIMER:
+             /* return state; */
+   /*             return {
+                   ...state.user,
+                   user: {...state.user, time: `${action.payload[0].hour}:${action.payload[0].minute}:${action.payload[0].second}`},
+               } */
+             return {
+                   ...state,
+                   user: {
+                       ...state.user,
+                        time: `${action.payload[0].hour}:${action.payload[0].minute}:${action.payload[0].second}`},
+               };
+        case UPDATE_USERS_ARR:
+            return {
+                  ...state,
+                  users:[...state.users,{...state.user}],
+                  filteredUsers:[...state.filteredUsers,{...state.user}]
+                };
         case DELETE_USER:
             console.log(action.payload);
             return {
@@ -36,10 +65,10 @@ export function userReducer  (state = initialState, action) {
                 }
             };
         case SHOW_MODAL: 
-        return {
-            ...state,
-            showModal: action.payload
-        }
+            return {
+                ...state,
+                showModal: action.payload
+            };
         default:
             return state;
     }

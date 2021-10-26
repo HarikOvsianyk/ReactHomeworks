@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import PrimaryButton from '../UI/Button/PrimaryButton';
 import {useDispatch, useSelector} from 'react-redux';
-import {showModal} from '../../Actions';
+import {showModal, getTimer, updateUsers} from '../../Actions';
 
 const style = {
   position: 'absolute',
@@ -23,6 +23,7 @@ const style = {
 export function Timer() {
   const dispatch = useDispatch();
   const showModalState = useSelector(state=> state.users.showModal);
+  const user = useSelector(state => state.users.user);
   const open = showModalState;
   const [startBTN, setStartBTN] = useState(true);
   const [stop, setStop] = useState(false);
@@ -69,7 +70,7 @@ export function Timer() {
     setStartBTN(false);
     setStop(false);
     setTimes([...times, {hour:hours,minute:minutes,second:seconds}]);
-    localStorage.setItem('times', JSON.stringify(times));
+    
   };
 
   const getReset = () => {
@@ -92,20 +93,27 @@ export function Timer() {
     dispatch(showModal(false));
   }
 
+  const saveTime = () => {
+      dispatch(getTimer(times));
+      dispatch(updateUsers());
+      dispatch(showModal(false));
+  }
+
 
   return (
     <div>
       <Modal
         open={open}
+        onClose = {closeModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            ID:
+            ID: {user.id}
           </Typography>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Participant:
+            Participant: {user.name} {user.second}
           </Typography>
         <div className="App">
             <h2>{hours}:{minutes}:{seconds}</h2>
@@ -121,7 +129,7 @@ export function Timer() {
         </div>
         <div style ={{marginTop: "20px", display:'flex', justifyContent: "space-between"}}>
             <PrimaryButton onClick = {closeModal}>Cancel</PrimaryButton>
-            <PrimaryButton>Save</PrimaryButton>
+            <PrimaryButton onClick={saveTime}>Save</PrimaryButton>
         </div>
         </Box>
       </Modal>
