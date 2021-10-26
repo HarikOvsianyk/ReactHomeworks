@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { MainContainer } from '../MainContainer/MainContainer';
 import Typography from '@mui/material/Typography';
 import { Input } from '../UI/Input/Input';
@@ -8,8 +8,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {useDispatch} from 'react-redux';
 import { createUser } from '../../Actions';
+import {Timer} from '../Timer/Timer';
 
 export const Form = () => {
+    const [modal, setModal] = useState(false);
     const dispatch = useDispatch();
     const schema = yup.object().shape({
         name: yup
@@ -30,6 +32,7 @@ export const Form = () => {
     const onSubmit = (data) => {
         dispatch(createUser(data));
         reset();
+        setModal(true);
     }
 
     return (
@@ -55,6 +58,13 @@ export const Form = () => {
                 helperText={errors?.second?.message}
             />
             </form>
+            {
+                modal 
+                ?
+                <Timer />
+                :
+                ''
+            }
             <PrimaryButton onClick={handleSubmit(onSubmit)}>Register participant</PrimaryButton>
         </MainContainer>
     )
