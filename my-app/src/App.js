@@ -12,7 +12,7 @@ function App() {
       <Search />
       <UserList />
       </MainContainer>
-      <MainContainer>
+      <MainContainer sx ={{mt:3}}>
         <Form/>
       </MainContainer>
     </MainContainer>

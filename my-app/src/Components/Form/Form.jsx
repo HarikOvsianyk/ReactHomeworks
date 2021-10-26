@@ -22,13 +22,14 @@ export const Form = () => {
         .required("Second name is required field"),
     });
 
-    const {register, handleSubmit, formState: {errors}} = useForm({
+    const {register, handleSubmit,reset, formState: {errors}} = useForm({
         mode: "onBlur",
         resolver: yupResolver(schema),
     });
 
     const onSubmit = (data) => {
         dispatch(createUser(data));
+        reset();
     }
 
     return (
