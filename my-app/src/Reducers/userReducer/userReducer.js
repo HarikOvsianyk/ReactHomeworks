@@ -4,12 +4,7 @@ import {id} from '../../utils';
 export const initialState = {
     users: users,
     filteredUsers: users,
-    user: {
-        id: '',
-        name: '',
-        second:'',
-        time: '',
-    },
+    user: {},
     showModal: true,
 };
 
@@ -18,31 +13,18 @@ export function userReducer  (state = initialState, action) {
         case CREATE_USER:
             return {
                 ...state,
-                user:{
-                    ...state.user,
-                    id:id(),
-                    name: action.payload.name,
-                    second: action.payload.second,
-                    time: '',
-                },
+                user:{id:id(),...action.payload },
             };
         case GET_TIMER:
-             /* return state; */
-   /*             return {
-                   ...state.user,
-                   user: {...state.user, time: `${action.payload[0].hour}:${action.payload[0].minute}:${action.payload[0].second}`},
-               } */
              return {
                    ...state,
-                   user: {
-                       ...state.user,
-                        time: `${action.payload[0].hour}:${action.payload[0].minute}:${action.payload[0].second}`},
+                   user: {...state.user, time: `${action.payload[0].hour}:${action.payload[0].minute}:${action.payload[0].second}`},
                };
         case UPDATE_USERS_ARR:
             return {
                   ...state,
-                  users:[...state.users,{...state.user}],
-                  filteredUsers:[...state.filteredUsers,{...state.user}]
+                  users:[...state.users,state.user],
+                  filteredUsers:[...state.filteredUsers,state.user]
                 };
         case DELETE_USER:
             console.log(action.payload);
