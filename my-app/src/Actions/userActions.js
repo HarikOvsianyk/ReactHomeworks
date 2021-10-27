@@ -4,6 +4,8 @@ export const SEARCH_USER = '[user] - search user';
 export const UPDATE_USERS_ARR = '[user] - update user';
 export const SHOW_MODAL = '[timer] - show modal'
 export const GET_TIMER = '[timer] - get time';
+export const GET_WINNER = '[winner] - get winner';
+export const BACK_TO = '[winner] - back to initial state';
 
 export const createUser = (data) => ({
     type: CREATE_USER,
@@ -33,4 +35,12 @@ export const showModal = (data) => ({
 export const getTimer = (time) => ({
     type: GET_TIMER,
     payload: time,
-})
+});
+
+export const getWinner = () => ({
+    type: GET_WINNER,
+}) 
+
+export const backTo = () => ({
+    type: BACK_TO,
+}) 

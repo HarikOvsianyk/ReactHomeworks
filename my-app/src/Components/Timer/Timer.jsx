@@ -25,9 +25,9 @@ export function Timer() {
   const showModalState = useSelector(state=> state.users.showModal);
   const user = useSelector(state => state.users.user);
   const open = showModalState;
-  const [startBTN, setStartBTN] = useState(true);
+  const [start, setStart] = useState(false);
   const [stop, setStop] = useState(false);
-  const [reset, setReset] = useState(false);
+  const [reset, setReset] = useState(true);
   const [times, setTimes] = useState([]);
   const [intervalTime, setIntervalTime] = useState('');
   let [seconds, setSeconds] = useState("00");
@@ -42,6 +42,7 @@ export function Timer() {
 
   const getStart = () => {
     setStop(true);
+    setStart(true);
     setReset(true);
     getTime();
   }
@@ -67,29 +68,40 @@ export function Timer() {
   };
 
   const getStop = () => {
-    setStartBTN(false);
     setStop(false);
+    setReset(false);
     setTimes([...times, {hour:hours,minute:minutes,second:seconds}]);
     
   };
 
-  const getReset = () => {
+  const setClock = () => {
     setHours('00');
     setMinutes('00');
     setSeconds('00');
+  }
+
+  const getReset = () => {
+    setTimes([]);
+    clearInterval(intervalTime);
+    setStart(false);
+    setClock();
     if (stop) {
         getStop();
         setReset(false);
-        setStartBTN(true);
         setStop(false);
 
     } else {
         setReset(true);
-        setStartBTN(true);
     }
   };
 
   const closeModal = () => {
+    setStop(false);
+    setStart(false);
+    setReset(true);
+    setClock();
+    setTimes([]);
+    clearInterval(intervalTime);
     dispatch(showModal(false));
   }
 
@@ -97,6 +109,9 @@ export function Timer() {
       dispatch(getTimer(times));
       dispatch(updateUsers());
       dispatch(showModal(false));
+      getReset();
+      setClock();
+      setTimes([]);
   }
 
 
@@ -117,19 +132,13 @@ export function Timer() {
           </Typography>
         <div className="App">
             <h2>{hours}:{minutes}:{seconds}</h2>
-            {
-            startBTN
-            ?
-            <Button onClick={getStart} disabled={stop} style={{backgroundColor:"green", color:"white", marginRight:"5px"}}>Start</Button>
-            :
-            <Button onClick={getStart} disabled={stop} style={{backgroundColor:"purple",color:"white", marginRight:"5px"}}>Countinue</Button>
-            }
+            <Button onClick={getStart} disabled={start} style={{backgroundColor:"green", color:"white", marginRight:"5px"}}>Start</Button>
             <Button onClick={getStop} disabled={!stop}  style={{backgroundColor: "red",color:"white",marginRight:"5px"}}>Stop</Button>
-            <Button onClick={getReset} disabled={!reset}  style={{backgroundColor: "orange",color:"white"}}>Reset</Button>
+            <Button onClick={getReset} disabled={reset}  style={{backgroundColor: "orange",color:"white"}}>Reset</Button>
         </div>
         <div style ={{marginTop: "20px", display:'flex', justifyContent: "space-between"}}>
-            <PrimaryButton onClick = {closeModal}>Cancel</PrimaryButton>
-            <PrimaryButton onClick={saveTime}>Save</PrimaryButton>
+            <PrimaryButton onClick = {closeModal} >Cancel</PrimaryButton>
+            <PrimaryButton onClick={saveTime} disabled={reset}>Save</PrimaryButton>
         </div>
         </Box>
       </Modal>

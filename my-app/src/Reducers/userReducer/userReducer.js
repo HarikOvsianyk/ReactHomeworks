@@ -1,11 +1,13 @@
-import {CREATE_USER,UPDATE_USERS_ARR, DELETE_USER, SEARCH_USER, SHOW_MODAL, GET_TIMER} from '../../Actions';
+import {CREATE_USER,UPDATE_USERS_ARR, DELETE_USER, SEARCH_USER, SHOW_MODAL, GET_TIMER, GET_WINNER, BACK_TO} from '../../Actions';
 import {users} from '../../Data/users';
-import {id} from '../../utils';
+import {id,defineWinner} from '../../utils';
 export const initialState = {
     users: users,
     filteredUsers: users,
     user: {},
     showModal: true,
+    winner: {},
+    isWinner: false,
 };
 
 export function userReducer  (state = initialState, action) {
@@ -51,6 +53,18 @@ export function userReducer  (state = initialState, action) {
                 ...state,
                 showModal: action.payload
             };
+        case GET_WINNER: 
+            return {
+                ...state,
+                isWinner: true,
+                winner: defineWinner(state.users),
+            }
+        case BACK_TO: 
+            return {
+                ...state,
+                isWinner: false,
+                winner: {},
+            }
         default:
             return state;
     }
