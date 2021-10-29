@@ -5,7 +5,6 @@ import Competition from '../Competition/Competition';
 
 export const CompetitionsList = () => {
     const competitions = useSelector((state) => state.competitions.filteredComp);
-    console.log(competitions);
     return (
         <MainContainer sx={{display: "flex",
         flexDirection: 'row',

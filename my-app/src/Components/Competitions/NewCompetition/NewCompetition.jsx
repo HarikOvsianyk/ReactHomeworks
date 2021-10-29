@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {useDispatch} from 'react-redux';
+import { createCompetition } from '../../../Actions';
 
 export const NewCompetition = () => {
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export const NewCompetition = () => {
     });
 
     const onSubmit = (data) => {
+        dispatch(createCompetition(data));
         reset();
     }
 
@@ -31,7 +33,7 @@ export const NewCompetition = () => {
             <Typography component="h2" variant="h5">Create contest</Typography>
             <form noValidate>
             <Input
-                {...register('contestName')}
+                {...register('name')}
                 id="contestName"
                 type="text"
                 label="Contest name"
