@@ -10,7 +10,7 @@ export const UserList = () => {
         flexDirection: 'row',
         flexWrap: 'wrap'}}>
             {
-                users.map(elem => <UserCard key={elem.id}  user={elem}/>)
+                users.map(user => <UserCard key={user.id}  user={user}/>)
             }
         </MainContainer>
     )

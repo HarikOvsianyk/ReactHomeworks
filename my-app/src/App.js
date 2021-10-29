@@ -1,34 +1,18 @@
 import React from 'react';
 import './App.css';
-import { MainContainer } from './Components/UI/MainContainer/MainContainer';
-import {Form} from './Components/Form/Form';
-import {UserList} from './Components/UserList/UserList';
-import {Search} from './Components/SearchBar/Search';
-import {Winner} from './Components/Winnerinfo/Winner';
+import {BrowserRouter} from 'react-router-dom';
+import {Routes} from './Components/Routes/Routes';
+import {MainPage} from './Components/Competitions/MainPage';
 
 
 function App() {
   return (
-    <MainContainer sx={{display: "flex"}}>
-      <MainContainer sx={{width: "100%"}}>
-      <Search />
-      <UserList />
-      </MainContainer>
-      <MainContainer sx ={{mt:3}}>
-        <Form/>
-        <Winner/>
-      </MainContainer>
-    </MainContainer>
+    <BrowserRouter>
+      {/* <Routes /> */}
+      <MainPage />
+    </BrowserRouter>
   );
 }
 
 export default App;
-/* const mapStateToProps = (state) => {
-  console.log('App', state);
-  return state;
-};
 
-const mapDispatchToProps = {
-  deleteUser,
-};
-export default connect(mapStateToProps, mapDispatchToProps)(App); */
