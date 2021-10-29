@@ -1,4 +1,4 @@
-import {SEARCH_COMPETITION, CREATE_COMPETITION} from '../../Actions';
+import {SEARCH_COMPETITION, CREATE_COMPETITION, STATUS_COMPETITION} from '../../Actions';
 import {id} from '../../utils';
 import {competitions} from '../../Data/competitions';
 
@@ -28,6 +28,8 @@ export function competitionReducer  (state = initialState, action) {
                 competitions:[...state.competitions,{id:id(),status: false,...action.payload} ],
                 filteredComp:[...state.filteredComp,{id:id(),status: false,...action.payload} ]
             };
+        case STATUS_COMPETITION: 
+            return ;
         default:
             return state;
     }

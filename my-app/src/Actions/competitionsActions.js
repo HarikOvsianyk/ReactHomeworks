@@ -1,5 +1,6 @@
 export const SEARCH_COMPETITION = '[competitions] - search competitions';
 export const CREATE_COMPETITION = '[competition] - create competition';
+export const STATUS_COMPETITION = '[competition] - change status competition';
 
 export const searchCompetition = (data) => ({
     type: SEARCH_COMPETITION,
@@ -9,4 +10,9 @@ export const searchCompetition = (data) => ({
 export const createCompetition = (data) => ({
     type: CREATE_COMPETITION,
     payload: data
+});
+
+export const statusCompetition = (id) => ({
+    type: STATUS_COMPETITION,
+    payload: id
 });

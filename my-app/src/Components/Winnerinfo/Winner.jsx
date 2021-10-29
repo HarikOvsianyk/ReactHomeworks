@@ -24,7 +24,7 @@ export const Winner = () => {
                         <h1>Users array is empty</h1>
                         :
                          <div>
-                                <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>The Winner</Typography>
+                        <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>The Winner</Typography>
                         <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>ID: {winner.id}</Typography>
                         <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>Name: {winner.name}</Typography>
                         <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>Surname: {winner.second}</Typography>

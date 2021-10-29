@@ -4,10 +4,17 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import PrimaryButton from '../../UI/Button/PrimaryButton';
 import Typography from '@mui/material/Typography';
-import { useDispatch } from 'react-redux';
+import {useHistory} from 'react-router-dom';
+
 
 export const Competition = ({competition}) => {
-  const dispatch = useDispatch();
+  const history = useHistory();
+  let status = '';
+  if (competition.status === true) {
+    status = 'finished';
+  } else {
+    status = 'active';
+  }
   return (
     <Card sx={{ width: 180,
                 m:2,
@@ -21,14 +28,14 @@ export const Competition = ({competition}) => {
           Name : {competition.name}
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Status : {competition.status}
+          Status : {status}
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Winner : {competition.winner}
         </Typography>
       </CardContent>
       <CardActions sx={{justifyContent:"center"}}>
-        <PrimaryButton>Show</PrimaryButton>
+        <PrimaryButton onClick={() => history.push(`/competition/${competition.id}`)}>Show</PrimaryButton>
       </CardActions>
     </Card>
   );

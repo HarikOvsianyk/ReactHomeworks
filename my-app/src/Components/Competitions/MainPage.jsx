@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MainContainer } from './../UI/MainContainer/MainContainer';
 import {CompetitionsList} from './CompetitionsList/CompetitionsList';
