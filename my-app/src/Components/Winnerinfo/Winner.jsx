@@ -4,14 +4,19 @@ import {PrimaryButton} from '../UI/Button/PrimaryButton';
 import Typography from '@mui/material/Typography';
 import {useSelector, useDispatch} from 'react-redux';
 import {getWinner, backTo} from '../../Actions/userActions';
+import {statusCompetition} from '../../Actions/competitionsActions';
  
-export const Winner = () => {
+export const Winner = ({competitionId}) => {
     const {users, winner, isWinner} = useSelector(state => state.users);
     const dispatch = useDispatch();
     let empty = false; 
     if (!users.length) {
         empty = true;
     };
+    const click = () => {
+        dispatch(getWinner());
+        dispatch(statusCompetition(competitionId));
+    }
     return ( 
         <MainContainer sx={{mt: 5}}>
             {
@@ -37,7 +42,7 @@ export const Winner = () => {
                 <div>
                     
                     <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>Total participants {users.length}</Typography>
-                    <PrimaryButton onClick = {() => dispatch(getWinner())}>Show winners</PrimaryButton>
+                    <PrimaryButton onClick = {() => click()}>Show winners</PrimaryButton>
                 </div>
             }
         </MainContainer>

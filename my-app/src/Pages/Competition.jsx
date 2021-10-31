@@ -12,8 +12,7 @@ import {useParams} from 'react-router-dom';
 function Competition() {
   const {winner,isWinner} = useSelector((state) => state.users);
   const {competitions} = useSelector((state) => state.competitions);
-  const {id} = useParams()
-
+  const {id} = useParams();
   const getCompetitionName = () => {
       let name = ''
       competitions.map(el => {
@@ -45,7 +44,7 @@ function Competition() {
       </MainContainer>
       <MainContainer sx ={{mt:3}}>
         <Form/>
-        <Winner/>
+        <Winner competitionId={id}/>
       </MainContainer>
     </MainContainer>
   );

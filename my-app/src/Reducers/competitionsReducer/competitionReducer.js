@@ -29,7 +29,19 @@ export function competitionReducer  (state = initialState, action) {
                 filteredComp:[...state.filteredComp,{id:id(),status: false,...action.payload} ]
             };
         case STATUS_COMPETITION: 
-            return ;
+            return {
+                ...state, 
+                competitions: state.competitions.map(
+                    (competition) => {
+                        if (competition.id === action.payload) {
+                            competition.status = true;
+                            /* competition.winner = `${action.payload.lastWinner.name} ${action.payload.lastWinner.second}` */
+                        }
+
+                        return competition;
+                    }
+                )
+            }
         default:
             return state;
     }
