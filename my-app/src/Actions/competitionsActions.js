@@ -12,7 +12,7 @@ export const createCompetition = (data) => ({
     payload: data
 });
 
-export const statusCompetition = (id) => ({
+export const statusCompetition = (id, winner) => ({
     type: STATUS_COMPETITION,
-    payload: id
+    payload: {id, winner}
 });

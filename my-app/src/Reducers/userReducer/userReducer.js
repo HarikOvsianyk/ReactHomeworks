@@ -29,7 +29,6 @@ export function userReducer  (state = initialState, action) {
                   filteredUsers:[...state.filteredUsers,state.user]
                 };
         case DELETE_USER:
-            console.log(action.payload);
             return {
                 ...state,
                 users: state.users.filter(user => user.id !== action.payload.id ),

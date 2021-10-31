@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {MainContainer} from '../UI/MainContainer/MainContainer';
 import {PrimaryButton} from '../UI/Button/PrimaryButton';
 import Typography from '@mui/material/Typography';
@@ -8,15 +8,21 @@ import {statusCompetition} from '../../Actions/competitionsActions';
  
 export const Winner = ({competitionId}) => {
     const {users, winner, isWinner} = useSelector(state => state.users);
+    console.log(winner);
     const dispatch = useDispatch();
     let empty = false; 
     if (!users.length) {
         empty = true;
     };
     const click = () => {
-        dispatch(getWinner());
-        dispatch(statusCompetition(competitionId));
+        dispatch(getWinner());;
     }
+
+    useEffect(()=> {
+        dispatch(statusCompetition(competitionId, winner))
+    }, [dispatch, competitionId, winner]);
+
+    
     return ( 
         <MainContainer sx={{mt: 5}}>
             {
@@ -42,7 +48,7 @@ export const Winner = ({competitionId}) => {
                 <div>
                     
                     <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>Total participants {users.length}</Typography>
-                    <PrimaryButton onClick = {() => click()}>Show winners</PrimaryButton>
+                    <PrimaryButton onClick = {click}>Show winners</PrimaryButton>
                 </div>
             }
         </MainContainer>
