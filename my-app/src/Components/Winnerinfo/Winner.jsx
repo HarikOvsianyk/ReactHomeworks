@@ -5,17 +5,22 @@ import Typography from '@mui/material/Typography';
 import {useSelector, useDispatch} from 'react-redux';
 import {getWinner, backTo} from '../../Actions/userActions';
 import {statusCompetition} from '../../Actions/competitionsActions';
+import {useHistory} from 'react-router-dom';
  
 export const Winner = ({competitionId}) => {
     const {users, winner, isWinner} = useSelector(state => state.users);
-    console.log(winner);
     const dispatch = useDispatch();
+    const history = useHistory();
     let empty = false; 
     if (!users.length) {
         empty = true;
     };
     const click = () => {
-        dispatch(getWinner());;
+        dispatch(getWinner());       
+    }
+
+    const backToInit = () => {
+        dispatch(backTo());
     }
 
     useEffect(()=> {
@@ -40,7 +45,8 @@ export const Winner = ({competitionId}) => {
                         <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>Name: {winner.name}</Typography>
                         <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>Surname: {winner.second}</Typography>
                         <Typography component="h2" variant="h5" sx={{textAlign: 'center',mb:5}}>Time: {winner.time}</Typography>
-                        <PrimaryButton onClick = {()=> dispatch(backTo())}>Back to initial state</PrimaryButton>
+                        <PrimaryButton onClick = {backToInit}>Back to initial state</PrimaryButton>
+                        <PrimaryButton style={{marginTop: '5px'}} onClick = {() => history.push(`/`)}>Back to main page</PrimaryButton>
                          </div>
                     }
                 </div>

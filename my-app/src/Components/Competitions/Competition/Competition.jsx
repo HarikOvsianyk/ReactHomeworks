@@ -14,7 +14,8 @@ export const Competition = ({competition}) => {
     status = 'finished';
   } else {
     status = 'active';
-  }
+  };
+
   return (
     <Card sx={{ width: 180,
                 m:2,

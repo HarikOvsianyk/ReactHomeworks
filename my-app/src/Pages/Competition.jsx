@@ -17,13 +17,13 @@ function Competition() {
       let name = ''
       competitions.map(el => {
           if(el.id === id) {
-              name = el.name
+              name = el.name;
+              console.log(el.id);
           }
           return el
       })
       return name
   }
-
   return (
     <MainContainer sx={{display: "flex"}}>
       <MainContainer sx={{width: "100%"}}>
